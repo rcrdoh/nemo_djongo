@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+    {% block content%}
+	  
+
+
+    <h3> Instancias en la base de datos </h3>
+
+	<ul>
+    {% for instance in context %}
+    	<li>{{instance}}</li>
+    {% endfor %}
+	</ul>
+    {% endblock%}

@@ -1,3 +1,16 @@
 <h1> Aca se recibe la data </h1>
 <ul>
 </ul>
+
+        <h4> Envia data </h4>
+
+	  <form action="{%url 'handler:receiver'}" method="post">
+	  Name:
+	  <br><input type="text" name="name" ><br>
+	  Action:
+	  <br><input type="text" name="action" ><br>
+	  Message:
+	  <br><input type="text" name="message" ><br>
+	  <br>
+	  <input type="submit" value="Submit">
+	</form>

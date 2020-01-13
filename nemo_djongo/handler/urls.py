@@ -1,8 +1,10 @@
 from django.urls import path
 from . import views
 
+app_name='handler'
 
 urlpatterns = [
-	path('get/',views.get_data_http,name='get_data_http'),
-	path('',views.home_view,name='home')
+	path('',views.home_view,name='home'),
+	path('viewer/',views.viewer,name='viewer'),
+	path('receiver/',views.receiver, name = 'receiver'),
 ]
