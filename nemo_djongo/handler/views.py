@@ -5,7 +5,7 @@ from django.views.decorators.http import require_http_methods
 #from handler.models import Nodos
 from . import models
 import json
-#import simplejson
+
 
 #El comando curl para hacer el post desde terminal es:
 #curl -i -X POST 'Content-Type: application/json' -d '{"name":"Pabloski", "action":"testeando","message":"gaaa"}' http://127.0.0.1:8000/handler/receiver/
