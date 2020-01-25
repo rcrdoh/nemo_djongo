@@ -5,7 +5,7 @@ from django.views.decorators.http import require_http_methods
 #from handler.models import Nodos
 from . import models
 import json
-
+#import simplejson
 
 #El comando curl para hacer el post desde terminal es:
 #curl -i -X POST 'Content-Type: application/json' -d '{"name":"Pabloski", "action":"testeando","message":"gaaa"}' http://127.0.0.1:8000/handler/receiver/
@@ -31,38 +31,19 @@ def receiver(request,*args,**kwargs):
     #context = {}
     #Lo debe coger en una especie de formulario
     #if request.method == 'POST': #Si el metodo es POST
-    string_data = request.body.decode('utf-8')
-    json_data = json.loads(string_data)
-    #print(json_data)
+    #string_data = request.body.decode('utf-8')
+    json_data = json.loads(json.loads(request.body))
+    print(request.body)
+    print(type(json_data))
+    print(json_data)
     # Ahora lo tendría que meter a la base de datos.
     models.Prueba_post.objects.create(
         name = json_data['name'],
         action = json_data['action'],
         message = json_data['message']
     )
-    #elif request.method == 'GET':
-        
-        #for num,data_object in enumerate(models.Prueba_post.objects.all()):
-        #print(models.Prueba_post._meta.get_fields())
-        #for num in range(models.Prueba_post.objects.all().count()):
-            #obj = data_object.objects.get(id=num+1)
-        #    print(dir(data_object))
-            #obj=data_object.value()
-            #print(obj._meta.get_fields())
-        #    context['object'+str(num)] = obj
-            #print([a for a in dir(obj) if not a.startswith('__')])
-            #print(obj.name)
-    #    checking=models.Prueba_post.objects.values('name','action','message')
-        #print(checking)
-    #    return HttpResponse(checking)
-        #print(num)
-        #print(context)
-    #else: 
-    #    context = {"name":"Aun no hay data",
-    #    "action":"Aun no hay data",
-    #    "message":"aun no hay data"}
 
-    #return render(request,"get-data.html",context)
+
     return HttpResponse(json_data)
 
 @require_http_methods(['GET'])
@@ -72,7 +53,6 @@ def viewer(request,*args,**kwargs):
 
 	#posible bug cuando no haya datos en la base de datos 
 	#verificar que arroja el query superior cuando no hayan datos
-	
 
 	if context is None:
 		context = {"name":"Aun no hay data",
